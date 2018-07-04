@@ -1,0 +1,21 @@
+<!--div *ngIf="message" [ngClass]="{ 'alert animated swing': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message.text}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="hideAlert()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+</div-->
+
+<div *ngIf="message" class="card text-white mb-3 card-alert" style="max-width: 18rem;" [ngClass]="{ 'animated swing': message, 'bg-success': message.type === 'success', 'bg-danger': message.type === 'error' }">
+    <div class="card-header">
+        <h5 class="card-title">
+            <span *ngIf="message.type === 'success'">Felicidades! </span>
+            <span *ngIf="message.type === 'error'">Error... </span>
+            <i class="fas fa-times" style="float:right;font-size: 1.5em;" (click)="hideAlert()"></i>
+        </h5>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{message.text}}</p>
+    </div>
+</div>
+
+
+<!-- en esta parte, asignar clase css de la libreria animated, con el efecto que tu quieras -->

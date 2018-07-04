@@ -1,0 +1,73 @@
+<br><br><br>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Marcas</li>
+        </ol>
+        <h1>Marcas</h1>
+
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#marcaModal" (click)="resetMarca()">Crear marca</button>
+
+        <!-- Icon Cards-->
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Img</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let m of marcas; index as i" (click)="setMarca(m)" data-toggle="modal" data-target="#marcaModal">
+                            <td>{{i+1}}</td>
+                            <td>{{m.nombre}}</td>
+                            <td><img [src]="m.img | aws:'marcas'"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid-->
+</div>
+
+
+
+
+
+<div class="modal fade" id="marcaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear nueva marca</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" #buttonClose>
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+
+                <form (ngSubmit)="f.form.valid && saveMarca()" #f="ngForm" novalidate>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre marca</label>
+                        <input type="text" class="form-control" name="nombre" [(ngModel)]="marca.nombre" #nombre="ngModel" required placeholder="Título de la mision...">
+                        <span *ngIf="f.submitted && !nombre.valid" class="badge badge-pill badge-dark">El nombre es requerido</span>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" *ngIf="marca._id" (click)="deleteMarca()">Eliminar marca</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="saveMarca()">Crear marca</button>
+            </div>
+        </div>
+    </div>
+</div>

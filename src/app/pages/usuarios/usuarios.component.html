@@ -1,0 +1,40 @@
+<br><br><br>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Usuarios</li>
+        </ol>
+        <h1>Usuarios</h1>
+
+        <hr>
+        <!-- Icon Cards-->
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                        <th>._id</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let u of usuarios">
+                            <td>{{u._id}}</td>
+                            <td>{{u.nombre}}</td>
+                            <td>{{u.email}}</td>
+                            <td>{{u.role}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /.container-fluid-->
+</div>

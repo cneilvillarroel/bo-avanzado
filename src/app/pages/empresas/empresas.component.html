@@ -1,0 +1,115 @@
+<br><br><br>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Empresas</li>
+        </ol>
+        <h1>Empresas</h1>
+
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#EmpresaModal" (click)="resetEmpresa()">Crear empresa</button>
+
+        <!-- Icon Cards-->
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Img</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let e of empresas; index as i" (click)="setEmpresa(e)" data-toggle="modal" data-target="#EmpresaModal">
+                            <td>{{i+1}}</td>
+                            <td>{{e.nombre}}</td>
+                            <td><img [src]="e.img | aws:'empresas'"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid-->
+</div>
+
+
+
+
+
+<div class="modal fade" id="EmpresaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear nueva empresa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" #buttonCloseEmpresa>
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+
+                <form (ngSubmit)="f.form.valid && saveEmpresa()" #f="ngForm" novalidate>
+
+                    <div class="form-group">
+                        <label for="rut">Rut empresa</label>
+                        <input type="text" class="form-control" name="rut" [(ngModel)]="empresa.rut" #rut="ngModel" required placeholder="Título de la empresa...">
+                        <span *ngIf="f.submitted && !rut.valid" class="badge badge-pill badge-dark">El rut es requerido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre empresa</label>
+                        <input type="text" class="form-control" name="nombre" [(ngModel)]="empresa.nombre" #nombre="ngModel" required placeholder="Nombre de la empresa...">
+                        <span *ngIf="f.submitted && !nombre.valid" class="badge badge-pill badge-dark">El nombre es requerido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad</label>
+                        <input type="text" class="form-control" name="ciudad" [(ngModel)]="empresa.ciudad" #ciudad="ngModel" required placeholder="Ciudad de la empresa...">
+                        <span *ngIf="f.submitted && !ciudad.valid" class="badge badge-pill badge-dark">El ciudad es requerido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ubicacion">Ubicación</label>
+                        <input type="text" class="form-control" name="ubicacion" [(ngModel)]="empresa.ubicacion" #ubicacion="ngModel" required placeholder="Ubicacion de la empresa...">
+                        <span *ngIf="f.submitted && !ubicacion.valid" class="badge badge-pill badge-dark">La ubicacion es requerido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="googleMap">Google Map</label>
+                        <input type="text" class="form-control" name="googleMap" [(ngModel)]="empresa.googleMap" #googleMap="ngModel" required placeholder="URL map de la empresa...">
+                        <span *ngIf="f.submitted && !googleMap.valid" class="badge badge-pill badge-dark">El googleMap es requerido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fono">Fono</label>
+                        <input type="text" class="form-control" name="fono" [(ngModel)]="empresa.fono" #fono="ngModel" required placeholder="fono de la empresa...">
+                        <span *ngIf="f.submitted && !fono.valid" class="badge badge-pill badge-dark">El fono es requerido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" name="email" [(ngModel)]="empresa.email" #email="ngModel" required placeholder="Email de la empresa...">
+                        <span *ngIf="f.submitted && !email.valid" class="badge badge-pill badge-dark">El email es requerido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horario">Horario de atención</label>
+                        <input type="text" class="form-control" name="horario" [(ngModel)]="empresa.horario" #horario="ngModel" required placeholder="Horario de la empresa...">
+                        <span *ngIf="f.submitted && !horario.valid" class="badge badge-pill badge-dark">El horario es requerido</span>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" *ngIf="empresa._id" (click)="deleteEmpresa()">Eliminar empresa</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="saveEmpresa()">Crear empresa</button>
+            </div>
+        </div>
+    </div>
+</div>

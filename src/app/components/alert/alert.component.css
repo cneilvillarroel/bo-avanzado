@@ -1,0 +1,11 @@
+.card-alert {
+    position: fixed;
+    top: 10vh;
+    right: 5vh;
+    margin-top: 25px;
+    opacity: 1;
+    z-index: 99999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
